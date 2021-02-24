@@ -25,7 +25,9 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ['id', 'category_name']
 
 class DocumentSerializer(serializers.ModelSerializer):
+    cat_name = serializers.CharField(source='category.category_name', read_only=True)
+
     class Meta:
         model = Document
         fields = ['id', 'document_no', 'barcode', 'title', 'date_completed', 'type', 'category', 'attachment',
-                  'date_uploaded', 'date_updated']
+                  'date_uploaded', 'date_updated', 'cat_name']
